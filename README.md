@@ -5,8 +5,8 @@
 ## Installation
 
 1. Download the file `wget https://github.com/fastai/nbdev-vscode/raw/main/nbdev-0.0.1.vsix`
-2. Open VSCode in the current directory `code .`
-3. In the file explorer, right click `nbdev-0.0.1.vsix` and select `Install Extension VSIX`:
+2. Open VSCode in the current directory `code.``
+3. In the file explorer, right-click `nbdev-0.0.1.vsix` and select `Install Extension VSIX`:
 
 ![](2023-03-20-21-18-26.png)
 

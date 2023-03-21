@@ -25,16 +25,39 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(disposable);
 }
 
-// export function activate(context: vscode.ExtensionContext) {
-// 	console.log('hello yaya');
-// 	context.subscriptions.push(
-// 	  vscode.commands.registerCommand('nbdev.gotoCustomDefinition', () => {
-// 		console.log('hello yaya')
-// 		// goToCustomDefinition();
-// 	  })
-// 	);
+// function gotoLine(activeEditor:any, lineNumber: number) {
+// 	const position = new vscode.Position(lineNumber, 1);
+// 	const range = new vscode.Range(position, position);
+// 	activeEditor.revealRange(range, vscode.NotebookEditorRevealType.Default);
 // }
 
+function sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+
+function getOpenJupyterNotebook(idx: number) {
+    const jupyter = vscode.extensions.getExtension('ms-toolsai.jupyter');
+    if (!jupyter) {
+        vscode.window.showErrorMessage('Jupyter extension not found.');
+        return;
+    }
+
+    if (!jupyter.isActive) {
+        vscode.window.showErrorMessage('Jupyter extension is not active.');
+        return;
+    }
+
+    const activeEditor = vscode.window.activeNotebookEditor;
+    if (!activeEditor) {
+        vscode.window.showInformationMessage('No active Jupyter editor found.');
+        return;
+    }
+
+	const cell = activeEditor.notebook.cellAt(idx);
+	const cellText = cell.document.getText();
+	// gotoLine(activeEditor, idx);
+}
 
 function getPath(relativeFilePath: string):string {
 	const editor = vscode.window.activeTextEditor;
@@ -46,14 +69,11 @@ function getPath(relativeFilePath: string):string {
 	return path.join(currentFileDir, relativeFilePath);
 }
 
-  
-
 const specialCommentPattern =  /# *%% *([^ ]+) *(\d+)/;
 
 
 async function goToCustomDefinition() {
 	const editor = vscode.window.activeTextEditor;
-  
 	if (!editor) {
 	  return;
 	}
@@ -77,7 +97,9 @@ async function goToCustomDefinition() {
 		  notebookUri,
 		  'jupyter-notebook', // The built-in Notebook editor viewType
 		  { preview: false }
-		);	
+		);
+		await sleep(3000);
+		getOpenJupyterNotebook(parseInt(cellNumber));
     } catch (error) {
 		const errorMessage = error instanceof Error ? error.message : String(error);
 		vscode.window.showErrorMessage('Error opening the notebook: ' + errorMessage);
@@ -90,9 +112,6 @@ async function goToCustomDefinition() {
 	}
   }
   
-  
-
-
 
 
 // This method is called when your extension is deactivated
