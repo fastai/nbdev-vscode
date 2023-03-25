@@ -10,19 +10,19 @@ export function activate(context: vscode.ExtensionContext) {
 
 // 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 // 	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "nbdev" is now active!');
+  console.log('Congratulations, your extension "nbdev" is now active!');
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('nbdev.navNotebook', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from Hamel Husain NB!');
-		goToCustomDefinition();
-	});
+  // The command has been defined in the package.json file
+  // Now provide the implementation of the command with registerCommand
+  // The commandId parameter must match the command field in package.json
+  let disposable = vscode.commands.registerCommand('nbdev.navNotebook', () => {
+    // The code you place here will be executed every time your command is executed
+    // Display a message box to the user
+    vscode.window.showInformationMessage('Hello World from Hamel Husain NB!');
+    goToCustomDefinition();
+  });
 
-	context.subscriptions.push(disposable);
+  context.subscriptions.push(disposable);
 }
 
 // function gotoLine(activeEditor:any, lineNumber: number) {
@@ -54,62 +54,68 @@ function getOpenJupyterNotebook(idx: number) {
         return;
     }
 
-	const cell = activeEditor.notebook.cellAt(idx);
-	const cellText = cell.document.getText();
-	// gotoLine(activeEditor, idx);
+    if (activeEditor.notebook.cellCount < idx + 1) {
+      activeEditor.selections = [new vscode.NotebookRange(idx, idx + 1)];
+      activeEditor.revealRange(new vscode.NotebookRange(idx, idx + 1), vscode.NotebookEditorRevealType.AtTop);
+    }
+  const cell = activeEditor.notebook.cellAt(idx);
+  const cellText = cell.document.getText();
+  // gotoLine(activeEditor, idx);
 }
 
 function getPath(relativeFilePath: string):string {
-	const editor = vscode.window.activeTextEditor;
-	if (!editor) {
-		return '.';
-	  }
-	const currentFilePath = editor.document.uri.fsPath;
-	const currentFileDir = path.dirname(currentFilePath);
-	return path.join(currentFileDir, relativeFilePath);
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    return '.';
+    }
+  const currentFilePath = editor.document.uri.fsPath;
+  const currentFileDir = path.dirname(currentFilePath);
+  return path.join(currentFileDir, relativeFilePath);
 }
 
 const specialCommentPattern =  /# *%% *([^ ]+) *(\d+)/;
 
 
 async function goToCustomDefinition() {
-	const editor = vscode.window.activeTextEditor;
-	if (!editor) {
-	  return;
-	}
+  const editor = vscode.window.activeTextEditor;
+  if (!editor) {
+    return;
+  }
   
-	const document = editor.document;
-	const position = editor.selection.active;
-	const lineNumber = position.line;
-	const line = document.lineAt(lineNumber).text;
+  const document = editor.document;
+  const position = editor.selection.active;
+  const lineNumber = position.line;
+  const line = document.lineAt(lineNumber).text;
   
-	const match = line.match(specialCommentPattern);
+  const match = line.match(specialCommentPattern);
   
-	if (match && match.index !== undefined) {
-	  const [_, filePath, cellNumber] = match;
-	  const absPath = getPath(filePath);
-	  const notebookUri = vscode.Uri.file(absPath);
+  if (match && match.index !== undefined) {
+    const [_, filePath, cellNumber] = match;
+    const absPath = getPath(filePath);
+    const notebookUri = vscode.Uri.file(absPath);
 
-	try {
-		console.log('Opened the notebook!');
-		await vscode.commands.executeCommand(
-		  'vscode.openWith',
-		  notebookUri,
-		  'jupyter-notebook', // The built-in Notebook editor viewType
-		  { preview: false }
-		);
-		await sleep(3000);
-		getOpenJupyterNotebook(parseInt(cellNumber));
+  try {
+    console.log('Opened the notebook!');
+    await vscode.commands.executeCommand(
+      'vscode.openWith',
+      notebookUri,
+      'jupyter-notebook', // The built-in Notebook editor viewType
+      { preview: false }
+    );
+  await sleep(3000);
+  
+  console.log('Cell number: ', cellNumber);
+    getOpenJupyterNotebook(parseInt(cellNumber));
     } catch (error) {
-		const errorMessage = error instanceof Error ? error.message : String(error);
-		vscode.window.showErrorMessage('Error opening the notebook: ' + errorMessage);
-	  }
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    vscode.window.showErrorMessage('Error opening the notebook: ' + errorMessage);
+    }
 
 
-	} else {
-	  // Fallback to built-in "Go To Definition" functionality
-	  await vscode.commands.executeCommand('editor.action.revealDefinition');
-	}
+  } else {
+    // Fallback to built-in "Go To Definition" functionality
+    await vscode.commands.executeCommand('editor.action.revealDefinition');
+  }
   }
   
 
