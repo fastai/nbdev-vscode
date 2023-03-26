@@ -16,10 +16,18 @@
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
+    "menus": {
+      "editor/context": [
+        {
+          "command": "nbdev.navNotebook",
+          "when": "editorTextFocus && editorLangId == 'python'"
+        }
+      ]
+    },
     "commands": [
       {
         "command": "nbdev.navNotebook",
-        "title": "nbdev navigate lib to notebook"
+        "title": "nbdev: navigate"
       }
     ],
     "keybindings": [
