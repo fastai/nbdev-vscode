@@ -51,16 +51,10 @@ function findCellModuleName(cell: vscode.NotebookCell): string | undefined {
 }
 
 export async function goToCustomDefinition() {
-  const editor = vscode.window.activeTextEditor;
-  if (!editor) {
-    return;
-  }
-
   if (vscode.window.activeNotebookEditor) {
     // We're in a notebook, so we're navigating back to code
 
     // Find the cell that we're in
-
     const notebookEditor = vscode.window.activeNotebookEditor;
 
     const cell = vscode.window.activeNotebookEditor.notebook.cellAt(
@@ -163,6 +157,11 @@ export async function goToCustomDefinition() {
       vscode.TextEditorRevealType.AtTop
     );
   } else {
+    const editor = vscode.window.activeTextEditor;
+    if (!editor) {
+      return;
+    }
+
     // We're in code, so we're navigating to a notebook
     const lineNumber = editor.selection.active.line;
 
