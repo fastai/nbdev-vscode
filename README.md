@@ -1,6 +1,6 @@
 # nbdev VSCode
 
-> An experimental nbdev extension to VSCode
+> An experimental nbdev extension for VSCode
 
 ## Current Features
 
