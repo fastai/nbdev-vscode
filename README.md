@@ -4,7 +4,7 @@
 
 ## Current Features
 
-1. Navigate between code notebooks and python modules with the `F2` key.  This will navigate to the right cell in the corresponding notebook, or the corresponding line in the python module!
+1. Navigate between code in notebooks and python modules with the `F2` key.  This will navigate to the right cell in the corresponding notebook, or the corresponding line in the python module!
 
 ## Installation
 
