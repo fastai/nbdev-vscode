@@ -33,7 +33,7 @@
     "keybindings": [
       {
         "command": "nbdev.navNotebook",
-        "key": "F12",
+        "key": "F2",
         "when": "editorTextFocus && editorLangId == 'python'"
       }
     ]
