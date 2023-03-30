@@ -30,6 +30,6 @@
 				"${workspaceFolder}/dist/**/*.js"
 			],
 			"preLaunchTask": "tasks: watch-tests"
-		}
+		},
 	]
 }

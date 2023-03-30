@@ -1,6 +1,7 @@
 import path = require("path");
 import * as vscode from "vscode";
 import { getPath } from "../utils/path";
+import { getDirectives } from "../utils/nb";
 
 const specialCommentPattern = /# *%% *([^ ]+) *(\d+)/;
 const globalMatchPattern = /# *%% *([^ ]+) *(\d+)/g;
@@ -24,7 +25,6 @@ function openInNotebook(idx: number) {
   }
 
   if (idx + 1 < activeEditor.notebook.cellCount) {
-    activeEditor.selections = [new vscode.NotebookRange(idx, idx + 1)];
     activeEditor.revealRange(
       new vscode.NotebookRange(idx, idx + 1),
       vscode.NotebookEditorRevealType.AtTop
@@ -36,16 +36,10 @@ function openInNotebook(idx: number) {
 // If found, returns the value, otherwise returns an empty string
 function findCellModuleName(cell: vscode.NotebookCell): string | undefined {
   const cellText = cell.document.getText();
-  // Get all characters from cellText up until the \n character
-  // e.g. in the cells with the `#|export` only comment, the cell
-  // text will be `#|export\ndef get_id...` and we want to get `#|export` part only
-  // otherwise the regex matches `def get_id` which is wrong.
-  // This could be fixed with a better regex...
-  const textBeforeNewline = cellText.split("\n")[0];
-  const exportMatch = textBeforeNewline.match(/#\|export\s+(?!\n)(\w+)/);
-  if (exportMatch) {
-    const [_, name] = exportMatch;
-    return name;
+
+  const directives = getDirectives(cellText);
+  if (directives && directives["export"]) {
+    return directives["export"][0];
   }
   return undefined;
 }
