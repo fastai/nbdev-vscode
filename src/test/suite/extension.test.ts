@@ -8,13 +8,17 @@ import path = require('path');
 import * as vscode from 'vscode';
 import { getDirectives } from "../../utils/nb";
 
-// const content = fs.readFileSync(nbPath, 'utf8');
-// const notebookJson = JSON.parse(content);
-
-
 suite('Extension Test Suite', () => {
 	const testProjectPath = path.join(__dirname, "data", "testproject1");
 	const nbPath = path.join(testProjectPath, "nbs", "00_core.ipynb");
+
+	const content = fs.readFileSync(nbPath, 'utf8');
+	const notebookJson = JSON.parse(content);
+	const codeCells = notebookJson.cells.filter((x: any) => x.cell_type === 'code');
+	codeCells.getCode = function(index:number) {
+		return this[index].source.join('');
+	};
+
 	vscode.window.showInformationMessage('Start all tests.');
 
 	test('Sample test', () => {
@@ -23,8 +27,22 @@ suite('Extension Test Suite', () => {
 	});
 
     test('nb.getDirectives', () => {
-       const content = fs.readFileSync(nbPath, 'utf8');
-	   console.log(content)
-		assert.strictEqual(-1, -1);
+
+		function checkDirective(cellNum: number, expected: string){
+			//check if the cell has the directive
+			const directives = getDirectives(codeCells.getCode(cellNum));
+			// @ts-ignore
+			assert.ok(expected in directives);
+		}
+
+		// this cell has an export directive
+		checkDirective(1, 'export');
+
+		// this cell has an eval directive
+		checkDirective(3, 'eval');
+
+		// this cell has a hide and eval directive
+		checkDirective(8, 'hide');	
+		checkDirective(8, 'eval');			
 	});
 });
