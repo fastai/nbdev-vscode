@@ -1,3 +1,5 @@
+[![test](https://github.com/fastai/nbdev-vscode/actions/workflows/test.yaml/badge.svg)](https://github.com/fastai/nbdev-vscode/actions/workflows/test.yaml)
+
 # nbdev VSCode
 
 > An experimental nbdev extension for VSCode
