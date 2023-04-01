@@ -1,5 +1,6 @@
 {
     "name": "nbdev",
+	"publisher": "hamelhusain",
     "repository": "https://github.com/fastai/nbdev-vscode",
     "displayName": "nbdev",
     "description": "vscode extensions for nbdev: https://nbdev.fast.ai",
