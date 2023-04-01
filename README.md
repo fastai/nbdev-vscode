@@ -16,7 +16,9 @@ Note: This extension assumes the workspace's root is the nbdev project's root.
 
 ## Installation
 
-Install the extension [from the marketplace](https://marketplace.visualstudio.com/items?itemName=hamelhusain.nbdev).
+Install the extension [from the marketplace](https://marketplace.visualstudio.com/items?itemName=hamelhusain.nbdev) in your IDE:
+
+<img width="250" alt="image" src="https://user-images.githubusercontent.com/1483922/229318940-83c16b9b-8157-48ab-b104-cf1a35fa1c4a.png">
 
 
 ## Change Keyboard Shortcuts
