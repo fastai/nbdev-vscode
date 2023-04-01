@@ -1,10 +1,11 @@
 {
     "name": "nbdev",
 	"publisher": "hamelhusain",
+	"icon": "icon.png",
     "repository": "https://github.com/fastai/nbdev-vscode",
     "displayName": "nbdev",
     "description": "vscode extensions for nbdev: https://nbdev.fast.ai",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "engines": {
       "vscode": "^1.76.0"
     },

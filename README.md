@@ -16,15 +16,7 @@ Note: This extension assumes the workspace's root is the nbdev project's root.
 
 ## Installation
 
-1. Download the file `wget https://github.com/fastai/nbdev-vscode/raw/main/nbdev-0.0.2.vsix`
-2. Install the extension with the CLI: 
-   `code --install-extension "./nbdev-0.0.2.vsix"`
-
-OR install with the GUI:
-1. Open VSCode in the current directory `code.``
-2. In the file explorer, right-click `nbdev-0.0.2.vsix` and select `Install Extension VSIX`:
-
-<img width="150" alt="2023-03-20-21-18-26" src="https://user-images.githubusercontent.com/1483922/229269975-bf493093-8c80-4465-9971-286f3e17d9b2.png">
+Install the extension [from the marketplace](https://marketplace.visualstudio.com/items?itemName=hamelhusain.nbdev).
 
 
 ## Change Keyboard Shortcuts
