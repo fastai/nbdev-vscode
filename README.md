@@ -26,7 +26,7 @@ Install the extension [from the marketplace](https://marketplace.visualstudio.co
 You can change the default keyboard shortcut from `F2` for this extension (and any other extension) by modifying your keyboard shortcuts as follows:
 
 1. Open the command palette: `CMD + Shift + P`
-2. Search for `Keyboard Shortcuts`, select `Preferences:Open Keyboard Shortcuts`
+2. Search for `Keyboard Shortcuts`, select `Preferences: Open Keyboard Shortcuts`
 3. Search for `nbdev` in the list of shortcuts
 4. If you hover over the left-hand side of the table, an edit icon will appear - this will allow you to change the shortcut.
 
