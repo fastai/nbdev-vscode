@@ -5,7 +5,7 @@
     "repository": "https://github.com/fastai/nbdev-vscode",
     "displayName": "nbdev",
     "description": "vscode extensions for nbdev: https://nbdev.fast.ai",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "engines": {
       "vscode": "^1.76.0"
     },
