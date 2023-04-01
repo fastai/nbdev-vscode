@@ -6,9 +6,13 @@
 
 ## Current Features
 
-1. Navigate between code in notebooks and python modules with the `F2` key.  This will navigate to the right cell in the corresponding notebook, or the corresponding line in the python module! [demo](https://twitter.com/HamelHusain/status/1641460341992304640)
+Note: This extension assumes the workspace's root is the nbdev project's root.
+
+1. Navigate between code in notebooks and python modules with the `F2` key.  This will navigate to the right cell in the corresponding notebook or the corresponding line in the python module! [demo](https://twitter.com/HamelHusain/status/1641460341992304640)
 
 2. Autocomplete with hints for important directives. This triggers in notebooks when you type `#| ` [demo](https://twitter.com/HamelHusain/status/1642051330402287616?s=20)
+
+3. Clean notebooks automatically on save. We have a Jupyter hook that didn't work in VSCode, and this fixes that. [demo](https://twitter.com/HamelHusain/status/1642202815756918785?s=20)
 
 ## Installation
 

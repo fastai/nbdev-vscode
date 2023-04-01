@@ -14,7 +14,7 @@
       "Other"
     ],
     "activationEvents": ["*"],
-    "main": "./out/ext2.js",
+    "main": "./dist/extension.js",
     "contributes": {
       "menus": {
         "editor/context": [
