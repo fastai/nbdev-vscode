@@ -8,7 +8,7 @@
 
 1. Navigate between code in notebooks and python modules with the `F2` key.  This will navigate to the right cell in the corresponding notebook, or the corresponding line in the python module! [demo](https://twitter.com/HamelHusain/status/1641460341992304640)
 
-2. Autocomplete with hints for important directives.
+2. Autocomplete with hints for important directives. [demo](https://twitter.com/HamelHusain/status/1642051330402287616?s=20)
 
 ## Installation
 
