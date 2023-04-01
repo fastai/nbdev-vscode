@@ -6,7 +6,7 @@
 
 ## Current Features
 
-Note: This extension assumes the root of the workspace is root of the nbdev project.
+Note: This extension assumes the workspace's root is the nbdev project's root.
 
 1. Navigate between code in notebooks and python modules with the `F2` key.  This will navigate to the right cell in the corresponding notebook or the corresponding line in the python module! [demo](https://twitter.com/HamelHusain/status/1641460341992304640)
 
