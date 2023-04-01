@@ -12,7 +12,7 @@ Note: This extension assumes the workspace's root is the nbdev project's root.
 
 2. Autocomplete with hints for important directives. This triggers in notebooks when you type `#| ` [demo](https://twitter.com/HamelHusain/status/1642051330402287616?s=20)
 
-3. Clean notebooks automatically on save. We have a Jupyter hook that didn't work in VSCode, and this fixes that. [demo]()
+3. Clean notebooks automatically on save. We have a Jupyter hook that didn't work in VSCode, and this fixes that. [demo](https://twitter.com/HamelHusain/status/1642202815756918785?s=20)
 
 ## Installation
 
