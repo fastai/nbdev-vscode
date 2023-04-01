@@ -5,7 +5,7 @@
     "repository": "https://github.com/fastai/nbdev-vscode",
     "displayName": "nbdev",
     "description": "vscode extensions for nbdev: https://nbdev.fast.ai",
-    "version": "0.0.5",
+    "version": "0.0.7",
     "engines": {
       "vscode": "^1.76.0"
     },
@@ -18,6 +18,16 @@
     "activationEvents": ["*"],
     "main": "./dist/extension.js",
     "contributes": {
+      "configuration": {
+        "title": "nbdev",
+        "properties": {
+          "nbdev.cleanEnabled": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable or disable auto cleaning notebooks upon save."
+          }
+        }
+      },
       "menus": {
         "editor/context": [
           {
