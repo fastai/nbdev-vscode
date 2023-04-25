@@ -5,11 +5,14 @@
     "repository": "https://github.com/fastai/nbdev-vscode",
     "displayName": "nbdev",
     "description": "vscode extensions for nbdev: https://nbdev.fast.ai",
-    "version": "0.0.8",
+    "version": "0.0.9",
     "engines": {
         "vscode": "^1.76.0"
     },
-    "extensionDependencies": [],
+    "extensionDependencies": [
+      "ms-python.python",
+      "ms-toolsai.jupyter"
+    ],
     "categories": [
         "Other"
     ],
@@ -18,10 +21,6 @@
     ],
     "main": "./dist/extension.js",
     "contributes": {
-        "extensionPack": [
-            "ms-python.python",
-            "quarto.quarto"
-        ],
         "configuration": {
             "title": "nbdev",
             "properties": {
